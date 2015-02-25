@@ -1,0 +1,3993 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="GetUserProfile">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="agent" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserProfileResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUserProfileResult" type="tns:ProdoctivityUserInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ProdoctivityUserInfo">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="UserId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FullName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Locale" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Company" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Expires" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="SpecialAccesses" type="tns:ArrayOfSpecialAccesses" />
+          <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfSpecialAccesses">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="SpecialAccesses" type="tns:SpecialAccesses" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="SpecialAccesses">
+        <s:restriction base="s:string">
+          <s:enumeration value="ConfiguratorAccess" />
+          <s:enumeration value="AdvancedConfiguratorAccess" />
+          <s:enumeration value="TemplateCreation" />
+          <s:enumeration value="SecurityWizard" />
+          <s:enumeration value="DocumentElementFunctionsWizard" />
+          <s:enumeration value="RecordWizard" />
+          <s:enumeration value="AssociationWizard" />
+          <s:enumeration value="NoteTypeWizard" />
+          <s:enumeration value="DataConnectorWizard" />
+          <s:enumeration value="BarcodeWizard" />
+          <s:enumeration value="TemplateTesting" />
+          <s:enumeration value="TemplatePublish" />
+          <s:enumeration value="ExpedientManagement" />
+          <s:enumeration value="SequencesAddUnLinkedField" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="CompareDocuments">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="agent" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DocumentHandleList" type="tns:ArrayOfInt" />
+            <s:element minOccurs="1" maxOccurs="1" name="addComments" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfInt">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="int" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CompareDocumentsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CompareDocumentsResult" type="tns:DocumentSource" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DocumentSource">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Data" type="s:base64Binary" />
+          <s:element minOccurs="0" maxOccurs="1" name="Author" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="DateAuthored" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Sources" type="tns:ArrayOfDocumentSource" />
+          <s:element minOccurs="0" maxOccurs="1" name="Changes" type="tns:ArrayOfDocumentChange" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfDocumentSource">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DocumentSource" nillable="true" type="tns:DocumentSource" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfDocumentChange">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DocumentChange" nillable="true" type="tns:DocumentChange" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DocumentChange">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ChangeId" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="PartNumber" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="XPath" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PageNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Excerpt" type="tns:ArrayOfExcerptItem" />
+          <s:element minOccurs="1" maxOccurs="1" name="ChangeType" type="tns:ChangeType" />
+          <s:element minOccurs="1" maxOccurs="1" name="Action" type="tns:ChangeAction" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfExcerptItem">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ExcerptItem" nillable="true" type="tns:ExcerptItem" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ExcerptItem">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ActionType" type="tns:ChangeAction" />
+          <s:element minOccurs="0" maxOccurs="1" name="Text" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="ChangeAction">
+        <s:restriction base="s:string">
+          <s:enumeration value="Added" />
+          <s:enumeration value="Deleted" />
+          <s:enumeration value="Moved" />
+          <s:enumeration value="None" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="ChangeType">
+        <s:restriction base="s:string">
+          <s:enumeration value="Text" />
+          <s:enumeration value="Comment" />
+          <s:enumeration value="Footnote" />
+          <s:enumeration value="Endnote" />
+          <s:enumeration value="Header" />
+          <s:enumeration value="Footer" />
+          <s:enumeration value="Movement" />
+          <s:enumeration value="Whitespace" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="GetDocument">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="agent" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="docHandle" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="getLatestVersion" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDocumentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDocumentResult" type="tns:ProdoctivityDocument" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ProdoctivityDocument">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ContentType" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="DocumentHandle" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="DocumentTypeHandle" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="LastUpdated" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Version" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="CreatedBy" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="CreationDate" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="CreatedByName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="VersionDate" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="DocumentType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Pages" type="tns:ArrayOfBase64Binary" />
+          <s:element minOccurs="0" maxOccurs="1" name="PagesBase64" type="tns:ArrayOfString" />
+          <s:element minOccurs="0" maxOccurs="1" name="Reference" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="KeywordData" type="tns:DocumentKeywordData" />
+          <s:element minOccurs="0" maxOccurs="1" name="GenerationToken" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Accesses" type="tns:ArrayOfDocumentTypeAccess" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfBase64Binary">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="base64Binary" nillable="true" type="s:base64Binary" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DocumentKeywordData">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="KeywordMap" type="tns:ArrayOfKeywordDefinition" />
+          <s:element minOccurs="0" maxOccurs="1" name="Keywords" type="tns:ArrayOfDocumentKeyword" />
+          <s:element minOccurs="0" maxOccurs="1" name="RecordMap" type="tns:ArrayOfRecordDefinition" />
+          <s:element minOccurs="0" maxOccurs="1" name="Records" type="tns:ArrayOfDocumentRecord" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfKeywordDefinition">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="KeywordDefinition" nillable="true" type="tns:KeywordDefinition" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="KeywordDefinition">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="DataType" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Handle" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="SubDataType" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfDocumentKeyword">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DocumentKeyword" nillable="true" type="tns:DocumentKeyword" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DocumentKeyword">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="KeywordHandle" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Order" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Value" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfRecordDefinition">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="RecordDefinition" nillable="true" type="tns:RecordDefinition" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="RecordDefinition">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfDocumentRecord">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DocumentRecord" nillable="true" type="tns:DocumentRecord" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DocumentRecord">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Keywords" type="tns:ArrayOfDocumentKeyword" />
+          <s:element minOccurs="1" maxOccurs="1" name="Order" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="RecordHandle" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="RecordInstanceHandle" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Records" type="tns:ArrayOfDocumentRecord" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfDocumentTypeAccess">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DocumentTypeAccess" nillable="true" type="tns:DocumentTypeAccess" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DocumentTypeAccess">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="AccessCode" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Category" type="tns:DocumentTypeAccessCategory" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="DocumentTypeAccessCategory">
+        <s:restriction base="s:string">
+          <s:enumeration value="Documents" />
+          <s:enumeration value="ScanningAndIndexing" />
+          <s:enumeration value="BatchProcessing" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="GetDocumentWithAccesses">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="agent" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="docHandle" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="getLatestVersion" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDocumentWithAccessesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDocumentWithAccessesResult" type="tns:ProdoctivityDocument" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDocumentToPDF">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="agent" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="docHandle" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="getLatestVersion" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDocumentToPDFResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDocumentToPDFResult" type="tns:ProdoctivityDocument" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDocumentInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="agent" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="docHandle" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDocumentInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDocumentInfoResult" type="tns:ProdoctivityDocument" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDocumentLatestVersion">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="agent" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="docHandle" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDocumentLatestVersionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetDocumentLatestVersionResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SaveDocumentWithKeywords">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="agent" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="documentType" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="DocumentData" type="tns:ArrayOfBase64Binary" />
+            <s:element minOccurs="1" maxOccurs="1" name="lastVersionDocHandle" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="mimeType" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="keywordsData" type="tns:DocumentData" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DocumentData">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="DocumentHandle" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="OriginalDocumentHandle" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Data" type="tns:KeywordData" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="KeywordData">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Keywords" type="tns:ArrayOfKeyword" />
+          <s:element minOccurs="0" maxOccurs="1" name="Records" type="tns:ArrayOfRecord" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfKeyword">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Keyword" nillable="true" type="tns:Keyword" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Keyword">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="KeywordHandle" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Value" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="DataType" type="tns:DataTypes" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="DataTypes">
+        <s:restriction base="s:string">
+          <s:enumeration value="Alphanumeric" />
+          <s:enumeration value="Numeric" />
+          <s:enumeration value="Date" />
+          <s:enumeration value="Time" />
+          <s:enumeration value="Logical" />
+          <s:enumeration value="Currency" />
+          <s:enumeration value="PredefinedList" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfRecord">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Record" nillable="true" type="tns:Record" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Record">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="RecordHandle" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Keywords" type="tns:ArrayOfKeyword" />
+          <s:element minOccurs="0" maxOccurs="1" name="Records" type="tns:ArrayOfRecord" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SaveDocumentWithKeywordsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SaveDocumentWithKeywordsResult" type="tns:ProdoctivityDocument" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SaveDocumentPage">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="agent" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PageData" type="s:base64Binary" />
+            <s:element minOccurs="1" maxOccurs="1" name="documentHandle" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SaveDocumentPageResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SaveDocumentPageResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SaveDocument">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="agent" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="documentType" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="DocumentData" type="tns:ArrayOfBase64Binary" />
+            <s:element minOccurs="1" maxOccurs="1" name="lastVersionDocHandle" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="mimeType" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SaveDocumentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SaveDocumentResult" type="tns:ProdoctivityDocument" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UserCanAccessDocument">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="agent" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="documentHandle" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UserCanAccessDocumentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UserCanAccessDocumentResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDocumentVersionHistory">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="agent" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="documentHandle" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDocumentVersionHistoryResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDocumentVersionHistoryResult" type="tns:ArrayOfProdoctivityDocumentVersion" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfProdoctivityDocumentVersion">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ProdoctivityDocumentVersion" nillable="true" type="tns:ProdoctivityDocumentVersion" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ProdoctivityDocumentVersion">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="DocumentHandle" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="DocumentDate" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Version" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Size" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DocType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CreatorName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Published" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="CreatorLongName" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetTemplateSampleContextXml">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="agent" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="documentHandle" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTemplateSampleContextXmlResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTemplateSampleContextXmlResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTemplateSampleContextXmlRandomValues">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="agent" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="documentHandle" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTemplateSampleContextXmlRandomValuesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTemplateSampleContextXmlRandomValuesResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTemplateContextDefinition">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="agent" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="documentHandle" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTemplateContextDefinitionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTemplateContextDefinitionResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AuthorizeChildSecurityToken">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="agent" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AuthorizeChildSecurityTokenResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AuthorizeChildSecurityTokenResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ForkChildSecurityToken">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="agent" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="parentToken" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ForkChildSecurityTokenResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ForkChildSecurityTokenResult" type="tns:UserToken" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="UserToken">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="UsuarioId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Expires" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="IP" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Inactive" nillable="true" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="ParentToken" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Agent" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="IsActiveDirectoryLoginEnabled">
+        <s:complexType />
+      </s:element>
+      <s:element name="IsActiveDirectoryLoginEnabledResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="IsActiveDirectoryLoginEnabledResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckUserIP">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="usr" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="ip" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckUserIPResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CheckUserIPResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserActiveDirectory">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="user" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="domain" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="loggedUserGroups" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="ip" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="agent" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserActiveDirectoryResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetUserActiveDirectoryResult" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="token" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AuthenticateActiveDirectory">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="agent" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AuthenticateActiveDirectoryResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AuthenticateActiveDirectoryResult" type="tns:ActiveDirectoryAuthenticationResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ActiveDirectoryAuthenticationResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Agent" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Ip" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Expires" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="FullName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SpecialAccesses" type="tns:ArrayOfSpecialAccesses" />
+          <s:element minOccurs="0" maxOccurs="1" name="Locale" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="UserId" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="RefreshActiveDirectoryToken">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="agent" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="token" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RefreshActiveDirectoryTokenResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="RefreshActiveDirectoryTokenResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SearchDocuments">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="agent" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="searchQuery" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="inPublishedDocuments" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="inWorkflowDocuments" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="inIndexedKeys" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="inNotes" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="rowCount" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="options" type="tns:AdvancedSearchOptions" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="AdvancedSearchOptions">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Arguments" type="tns:ArrayOfExpression" />
+          <s:element minOccurs="1" maxOccurs="1" name="isSQLSearch" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfExpression">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Expression" nillable="true" type="tns:Expression" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Expression">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="IsNegative" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="LeftExpression" type="tns:Expression" />
+          <s:element minOccurs="0" maxOccurs="1" name="RightExpression" type="tns:Expression" />
+          <s:element minOccurs="0" maxOccurs="1" name="Source" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Operand" type="tns:OperatorType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Target" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TargetFixedValue" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Function" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Where" type="tns:Expression" />
+          <s:element minOccurs="0" maxOccurs="1" name="InvolvedSources" type="tns:ArrayOfString" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="OperatorType">
+        <s:restriction base="s:string">
+          <s:enumeration value="GreaterThan" />
+          <s:enumeration value="LesserThan" />
+          <s:enumeration value="Equals" />
+          <s:enumeration value="NotEquals" />
+          <s:enumeration value="GreaterOrEquals" />
+          <s:enumeration value="LesserOrEquals" />
+          <s:enumeration value="AND" />
+          <s:enumeration value="OR" />
+          <s:enumeration value="Contains" />
+          <s:enumeration value="StartsWith" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="SearchDocumentsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SearchDocumentsResult" type="tns:ArrayOfProdoctivityDataDocument" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfProdoctivityDataDocument">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ProdoctivityDataDocument" nillable="true" type="tns:ProdoctivityDataDocument" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ProdoctivityDataDocument">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ReferenceMarker" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="DocumentHandle" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="DocumentTypeHandle" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="DocumentTypeName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="KeywordList" type="tns:ArrayOfProdoctivityKeyword" />
+          <s:element minOccurs="1" maxOccurs="1" name="OriginalDocumentHandle" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Version" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="tns:ProdoctivityDocumentStatus" />
+          <s:element minOccurs="1" maxOccurs="1" name="BusinessFunctionHandle" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="BusinessFunctionName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="BusinessFunctionType" type="tns:BusinessFunctionTypes" />
+          <s:element minOccurs="1" maxOccurs="1" name="CreatedBy" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Notes" type="tns:ArrayOfDocumentNote" />
+          <s:element minOccurs="0" maxOccurs="1" name="Tags" type="tns:ArrayOfString" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsTemplate" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfProdoctivityKeyword">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ProdoctivityKeyword" nillable="true" type="tns:ProdoctivityKeyword" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ProdoctivityKeyword">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="KeywordHandle" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="KeywordName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="DataType" type="tns:ProdoctivityDataType" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsGroup" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Values" type="tns:ArrayOfAnyType" />
+          <s:element minOccurs="0" maxOccurs="1" name="GroupInstances" type="tns:ArrayOfProdoctivityKeyword" />
+          <s:element minOccurs="0" maxOccurs="1" name="DictionaryConfig" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="ProdoctivityDataType">
+        <s:restriction base="s:string">
+          <s:enumeration value="Alphanumeric" />
+          <s:enumeration value="Numeric" />
+          <s:enumeration value="PredefinedList" />
+          <s:enumeration value="DateTime" />
+          <s:enumeration value="Boolean" />
+          <s:enumeration value="Currency" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfAnyType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="anyType" nillable="true" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="ProdoctivityDocumentStatus">
+        <s:restriction base="s:string">
+          <s:enumeration value="Published" />
+          <s:enumeration value="PendingPublish" />
+          <s:enumeration value="ErrorPublish" />
+          <s:enumeration value="QAScan" />
+          <s:enumeration value="Index" />
+          <s:enumeration value="QAIndex" />
+          <s:enumeration value="SkippedIndex" />
+          <s:enumeration value="Deleted" />
+          <s:enumeration value="Template" />
+          <s:enumeration value="WorkflowDocument" />
+          <s:enumeration value="MassiveGenerationZipFile" />
+          <s:enumeration value="DocumentGenerationTransient" />
+          <s:enumeration value="Error" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="BusinessFunctionTypes">
+        <s:restriction base="s:string">
+          <s:enumeration value="Normal" />
+          <s:enumeration value="FragmentLibrary" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfDocumentNote">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DocumentNote" nillable="true" type="tns:DocumentNote" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DocumentNote">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="DocumentHandle" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="CreationDate" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Creator" type="tns:ProdoctivityUser" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="tns:DocumentNoteStatus" />
+          <s:element minOccurs="0" maxOccurs="1" name="Type" type="tns:DocumentNoteType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ProdoctivityUser">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="UserId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LastName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IdentificationType" type="tns:IdentificationType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Identification" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Position" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Phone" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Phone2" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ValidityPeriodType" type="tns:ValidityPeriodType" />
+          <s:element minOccurs="1" maxOccurs="1" name="HasValidityPeriod" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ValidityPeriodStart" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="ValidityPeriodEnd" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="OfficeId" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="HasAllOffices" nillable="true" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="HasActiveDirectoryIntegration" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Active" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Roles" type="tns:ArrayOfProdoctivityRole" />
+          <s:element minOccurs="1" maxOccurs="1" name="HasSpecificStation" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Station" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="HasSpecificSchedule" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="LastLoginDate" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="StartHour" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="EndHour" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Properties" type="tns:PropertyCollection" />
+          <s:element minOccurs="0" maxOccurs="1" name="PropertiesBridge" type="tns:ArrayOfProperty" />
+          <s:element minOccurs="0" maxOccurs="1" name="Stations" type="tns:ArrayOfString" />
+          <s:element minOccurs="0" maxOccurs="1" name="Locale" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Company" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="IdentificationType">
+        <s:restriction base="s:string">
+          <s:enumeration value="IdentityDocumentEsDo" />
+          <s:enumeration value="Passport" />
+          <s:enumeration value="TaxpayerIdentificationNumberEsDo" />
+          <s:enumeration value="Other" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="ValidityPeriodType">
+        <s:restriction base="s:string">
+          <s:enumeration value="Undefined" />
+          <s:enumeration value="DateRange" />
+          <s:enumeration value="LimitDate" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfProdoctivityRole">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ProdoctivityRole" nillable="true" type="tns:ProdoctivityRole" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ProdoctivityRole">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="RoleId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Active" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ActiveDirectoryIntegration" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Users" type="tns:ArrayOfProdoctivityUser" />
+          <s:element minOccurs="1" maxOccurs="1" name="UsersCount" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="SpecialAccesses" type="tns:ArrayOfSpecialAccesses" />
+          <s:element minOccurs="0" maxOccurs="1" name="DocumentTypeAccesses" type="tns:ArrayOfDocumentTypeAccesses" />
+          <s:element minOccurs="1" maxOccurs="1" name="DocumentTypeAccessesCount" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="WorkFlowQueues" type="tns:ArrayOfWorkflowQueue" />
+          <s:element minOccurs="0" maxOccurs="1" name="ScannerProfiles" type="tns:ArrayOfString" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfProdoctivityUser">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ProdoctivityUser" nillable="true" type="tns:ProdoctivityUser" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfDocumentTypeAccesses">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DocumentTypeAccesses" nillable="true" type="tns:DocumentTypeAccesses" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DocumentTypeAccesses">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="DocumentTypeId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Accesses" type="tns:ArrayOfInt" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfWorkflowQueue">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="WorkflowQueue" nillable="true" type="tns:WorkflowQueue" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="WorkflowQueue">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PropertyCollection">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="AllProperties" type="tns:ArrayOfProperty" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfProperty">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Property" nillable="true" type="tns:Property" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Property">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Value" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="DocumentNoteStatus">
+        <s:restriction base="s:string">
+          <s:enumeration value="Inactive" />
+          <s:enumeration value="Active" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="DocumentNoteType">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="PublicVisible" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SaveMassiveGenerationConfig">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="agent" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="configData" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SaveMassiveGenerationConfigResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SaveMassiveGenerationConfigResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SaveMassiveGeneration">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="agent" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="gen" type="tns:MassiveGeneration" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="MassiveGeneration">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ConfigId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ConfigName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="UserId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Date" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="DocumentCount" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ProcessedDocumentCount" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="tns:MassiveGenerationStatus" />
+          <s:element minOccurs="1" maxOccurs="1" name="DocHandle" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ZippedDocumentHandle" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="PdfDocumentHandle" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ProdoctivityDistributionStatus" type="tns:MassiveGenerationDistributionStatus" />
+          <s:element minOccurs="1" maxOccurs="1" name="PdfDistributionStatus" type="tns:MassiveGenerationDistributionStatus" />
+          <s:element minOccurs="1" maxOccurs="1" name="FileDistributionStatus" type="tns:MassiveGenerationDistributionStatus" />
+          <s:element minOccurs="1" maxOccurs="1" name="FaxDistributionStatus" type="tns:MassiveGenerationDistributionStatus" />
+          <s:element minOccurs="1" maxOccurs="1" name="EmailDistributionStatus" type="tns:MassiveGenerationDistributionStatus" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="MassiveGenerationStatus">
+        <s:restriction base="s:string">
+          <s:enumeration value="New" />
+          <s:enumeration value="Completed" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="MassiveGenerationDistributionStatus">
+        <s:restriction base="s:string">
+          <s:enumeration value="NotSelected" />
+          <s:enumeration value="ExecutionFinishedOK" />
+          <s:enumeration value="Executing" />
+          <s:enumeration value="Error" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="SaveMassiveGenerationResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetMassiveGeneration">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="agent" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="token" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMassiveGenerationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetMassiveGenerationResult" type="tns:MassiveGeneration" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMassiveGenerationList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="agent" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfMassiveGeneration">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="MassiveGeneration" nillable="true" type="tns:MassiveGeneration" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetMassiveGenerationListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetMassiveGenerationListResult" type="tns:ArrayOfMassiveGeneration" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMassiveGenerationConfigList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="agent" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="MassiveGenerationConfig">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ConfigData" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfMassiveGenerationConfig">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="MassiveGenerationConfig" nillable="true" type="tns:MassiveGenerationConfig" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetMassiveGenerationConfigListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetMassiveGenerationConfigListResult" type="tns:ArrayOfMassiveGenerationConfig" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMassiveGenerationConfig">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="agent" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMassiveGenerationConfigResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetMassiveGenerationConfigResult" type="tns:MassiveGenerationConfig" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteMassiveGenerationConfig">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="agent" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteMassiveGenerationConfigResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="DeleteCombinedGenerationConfig">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="agent" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteCombinedGenerationConfigResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetCombinedTemplateConfigList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="agent" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ProdoctivityCombinedTemplateConfig">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Comment" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="BusinessFunctionId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="BusinessFunctionString" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Items" type="tns:ArrayOfProdoctivityCombinedTemplateConfigItem" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfProdoctivityCombinedTemplateConfigItem">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ProdoctivityCombinedTemplateConfigItem" nillable="true" type="tns:ProdoctivityCombinedTemplateConfigItem" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ProdoctivityCombinedTemplateConfigItem">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="CombinedTemplateConfigId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="TemplateId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="TemplateName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Order" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="BusinessFunctionString" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="BusinessFunctionId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="DocumentHandle" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfProdoctivityCombinedTemplateConfig">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ProdoctivityCombinedTemplateConfig" nillable="true" type="tns:ProdoctivityCombinedTemplateConfig" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetCombinedTemplateConfigListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCombinedTemplateConfigListResult" type="tns:ArrayOfProdoctivityCombinedTemplateConfig" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCombinedTemplateConfig">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="user" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="agent" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCombinedTemplateConfigResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCombinedTemplateConfigResult" type="tns:ProdoctivityCombinedTemplateConfig" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteMassiveGeneration">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="user" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="agent" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="token" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteMassiveGenerationResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetCatalogList">
+        <s:complexType />
+      </s:element>
+      <s:complexType name="ProdoctivityCatalog">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Key" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EntryList" type="tns:ArrayOfProdoctivityCatalogItem" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfProdoctivityCatalogItem">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ProdoctivityCatalogItem" nillable="true" type="tns:ProdoctivityCatalogItem" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ProdoctivityCatalogItem">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="CatalogKey" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Code" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description3" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfProdoctivityCatalog">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ProdoctivityCatalog" nillable="true" type="tns:ProdoctivityCatalog" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetCatalogListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCatalogListResult" type="tns:ArrayOfProdoctivityCatalog" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCatalog">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="codigo" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCatalogResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCatalogResult" type="tns:ProdoctivityCatalog" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetKeywordList">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetKeywordListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetKeywordListResult" type="tns:ArrayOfProdoctivityKeyword" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetKeyword">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="user" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="agent" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="keywordName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetKeywordResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetKeywordResult" type="tns:ProdoctivityKeyword" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDocumentHandleListFromGenerationToken">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="user" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="agent" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="generationToken" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDocumentHandleListFromGenerationTokenResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDocumentHandleListFromGenerationTokenResult" type="tns:ArrayOfInt" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMassiveGenerationInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="token" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="MassiveGenerationInfo">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ConfigId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ConfigName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="UserId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Date" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="DocumentCount" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ProcessedDocumentCount" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="tns:MassiveGenerationStatus" />
+          <s:element minOccurs="1" maxOccurs="1" name="DocHandle" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ZippedDocumentHandle" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Distributions" type="tns:ArrayOfMassiveGenerationDistributionInfo" />
+          <s:element minOccurs="0" maxOccurs="1" name="Documents" type="tns:ArrayOfMassiveGenerationDocumentInfo" />
+          <s:element minOccurs="0" maxOccurs="1" name="TemplateList" type="tns:ArrayOfProdoctivityTemplate" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfMassiveGenerationDistributionInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="MassiveGenerationDistributionInfo" nillable="true" type="tns:MassiveGenerationDistributionInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="MassiveGenerationDistributionInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Key" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Selected" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Percentage" type="s:decimal" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfMassiveGenerationDocumentInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="MassiveGenerationDocumentInfo" nillable="true" type="tns:MassiveGenerationDocumentInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="MassiveGenerationDocumentInfo">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="DocumentHandle" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Reference" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DistributionStatus" type="tns:ArrayOfMassiveGenerationDocumentDistributionStatus" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfMassiveGenerationDocumentDistributionStatus">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="MassiveGenerationDocumentDistributionStatus" nillable="true" type="tns:MassiveGenerationDocumentDistributionStatus" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="MassiveGenerationDocumentDistributionStatus">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Key" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Kind" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="tns:MassiveGenerationDistributionStatus" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfProdoctivityTemplate">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ProdoctivityTemplate" nillable="true" type="tns:ProdoctivityTemplate" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ProdoctivityTemplate">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Codigo" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="DocumentKey" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="OriginalDocumentHandle" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="DocumentTypeKey" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="BusinessLineName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Published" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Date" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="DocumentGenerationWorkflowDefinitionId" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="DocumentConfigWorkflowDefinitionId" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="BusinessLineId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="businessFunctionType" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="AffectedTemplateCount" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="BinaryParts" type="s:base64Binary" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetMassiveGenerationInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetMassiveGenerationInfoResult" type="tns:MassiveGenerationInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GenerateDocumentFromProdoctivityDocumentHandleList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="prodoctivityReq" type="tns:ProdoctivityDocumentGenerationRequest" />
+            <s:element minOccurs="0" maxOccurs="1" name="documentHandleList" type="tns:ArrayOfInt" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ProdoctivityDocumentGenerationRequest">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Contexts" type="tns:ArrayOfGenerationContext" />
+          <s:element minOccurs="1" maxOccurs="1" name="ResultType" type="tns:ClientRequestResultType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Dispositions" type="tns:ArrayOfDisposition" />
+          <s:element minOccurs="1" maxOccurs="1" name="DocumentHandle" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ProdoctivityUsername" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ProdoctivityPassword" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ProdoctivityAgent" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfGenerationContext">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="GenerationContext" nillable="true" type="tns:GenerationContext" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="GenerationContext">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Data">
+            <s:complexType>
+              <s:sequence>
+                <s:any processContents="lax" />
+              </s:sequence>
+            </s:complexType>
+          </s:element>
+          <s:element minOccurs="0" maxOccurs="1" name="Documents" type="tns:ArrayOfDocument" />
+          <s:element minOccurs="0" maxOccurs="1" name="RequestData" type="tns:ArrayOfKeyValueOfStringString" />
+          <s:element minOccurs="0" maxOccurs="1" name="GenerationToken" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Id" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsDebug" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfDocument">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Document" nillable="true" type="tns:Document" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Document">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="TemplateKey" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Plugins" type="tns:ArrayOfDocumentPlugin" />
+          <s:element minOccurs="0" maxOccurs="1" name="Dispositions" type="tns:ArrayOfDocumentDisposition" />
+          <s:element minOccurs="0" maxOccurs="1" name="DocumentKey" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfDocumentPlugin">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DocumentPlugin" nillable="true" type="tns:DocumentPlugin" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DocumentPlugin">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="PluginKey" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Parameters">
+            <s:complexType>
+              <s:sequence>
+                <s:any processContents="lax" />
+              </s:sequence>
+            </s:complexType>
+          </s:element>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfDocumentDisposition">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DocumentDisposition" nillable="true" type="tns:DocumentDisposition" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DocumentDisposition">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="DispositionKey" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Parameters">
+            <s:complexType>
+              <s:sequence>
+                <s:any processContents="lax" />
+              </s:sequence>
+            </s:complexType>
+          </s:element>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfKeyValueOfStringString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="KeyValueOfStringString" nillable="true" type="tns:KeyValueOfStringString" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="KeyValueOfStringString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Key" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Value" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="ClientRequestResultType">
+        <s:restriction base="s:string">
+          <s:enumeration value="Token" />
+          <s:enumeration value="Inline" />
+          <s:enumeration value="InlineRaw" />
+          <s:enumeration value="InlineSoap" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfDisposition">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Disposition" nillable="true" type="tns:Disposition" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Disposition">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Key" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ClassName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="GlobalParameters">
+            <s:complexType>
+              <s:sequence>
+                <s:any processContents="lax" />
+              </s:sequence>
+            </s:complexType>
+          </s:element>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DocumentGenerationResponse">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="GenerationToken" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Data" type="s:base64Binary" />
+          <s:element minOccurs="0" maxOccurs="1" name="DataList" type="tns:ArrayOfBase64Binary" />
+          <s:element minOccurs="0" maxOccurs="1" name="ResultReport">
+            <s:complexType>
+              <s:sequence>
+                <s:any processContents="lax" />
+              </s:sequence>
+            </s:complexType>
+          </s:element>
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GenerateDocumentFromProdoctivityDocumentHandleListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GenerateDocumentFromProdoctivityDocumentHandleListResult" type="tns:DocumentGenerationResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GenerateDocumentFromProdoctivityDocumentHandle">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="prodoctivityReq" type="tns:ProdoctivityDocumentGenerationRequest" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GenerateDocumentFromProdoctivityDocumentHandleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GenerateDocumentFromProdoctivityDocumentHandleResult" type="tns:DocumentGenerationResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SaveTemplate">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="agent" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="templateData" type="s:base64Binary" />
+            <s:element minOccurs="0" maxOccurs="1" name="contentLibraryItem" type="tns:ContentLibraryItem" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ContentLibraryItem">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="TemplateId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Category" type="tns:BusinessCatergory" />
+          <s:element minOccurs="0" maxOccurs="1" name="Type" type="tns:ItemType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Languague" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="BusinessCatergory">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ItemType">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="LocalizedNames" type="tns:ArrayOfKeyValuePairOfStringString" />
+          <s:element minOccurs="0" maxOccurs="1" name="LocalizedName" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfKeyValuePairOfStringString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="KeyValuePairOfStringString" type="tns:KeyValuePairOfStringString" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="KeyValuePairOfStringString" />
+      <s:element name="SaveTemplateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SaveTemplateResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDocumentNotes">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="docHandle" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDocumentNotesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDocumentNotesResult" type="tns:ArrayOfDocumentNote" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SaveAlert">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="alert" type="tns:Alerta" />
+            <s:element minOccurs="0" maxOccurs="1" name="userList" type="tns:ArrayOfInt" />
+            <s:element minOccurs="0" maxOccurs="1" name="roleList" type="tns:ArrayOfInt" />
+            <s:element minOccurs="1" maxOccurs="1" name="notificationType" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Alerta">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="DocumentHandle" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Codigo" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="FechaAlerta" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="FechaCreacion" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="UsuarioCreador" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="UsuarioCreadorDesc" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Descripcion" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Estado" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="EstadoDesc" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="TipoAlerta" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="TipoAlertaDesc" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="AvisoAntesVencimiento" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="AvisoPosteriorVencimiento" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="AlertOnMaturity" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="FrecuenciaAviso" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Umbral" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="AvisoEmail" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="AvisoSms" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="AvisoProDoctivity" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="EmailUsers" type="tns:ArrayOfString" />
+          <s:element minOccurs="0" maxOccurs="1" name="PhoneNumberList1" type="tns:ArrayOfString" />
+          <s:element minOccurs="0" maxOccurs="1" name="PhoneNumberList2" type="tns:ArrayOfString" />
+          <s:element minOccurs="1" maxOccurs="1" name="CodigoAlerta" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="AlertaMostrada" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="ListUserCode" type="tns:ArrayOfInt1" />
+          <s:element minOccurs="0" maxOccurs="1" name="ListRolCode" type="tns:ArrayOfInt1" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfInt1">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="int" nillable="true" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SaveAlertResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SaveAlertResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAlert">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAlertResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAlertResult" type="tns:Alerta" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAlertsForUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="userId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfAlerta">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Alerta" nillable="true" type="tns:Alerta" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetAlertsForUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAlertsForUserResult" type="tns:ArrayOfAlerta" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GenerateBarcode">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="barcodeType" type="tns:TYPE" />
+            <s:element minOccurs="0" maxOccurs="1" name="value" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="labelVisible" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:simpleType name="TYPE">
+        <s:restriction base="s:string">
+          <s:enumeration value="UNSPECIFIED" />
+          <s:enumeration value="UPCA" />
+          <s:enumeration value="UPCE" />
+          <s:enumeration value="UPC_SUPPLEMENTAL_2DIGIT" />
+          <s:enumeration value="UPC_SUPPLEMENTAL_5DIGIT" />
+          <s:enumeration value="EAN13" />
+          <s:enumeration value="EAN8" />
+          <s:enumeration value="Interleaved2of5" />
+          <s:enumeration value="Standard2of5" />
+          <s:enumeration value="Industrial2of5" />
+          <s:enumeration value="CODE39" />
+          <s:enumeration value="CODE39Extended" />
+          <s:enumeration value="Codabar" />
+          <s:enumeration value="PostNet" />
+          <s:enumeration value="BOOKLAND" />
+          <s:enumeration value="ISBN" />
+          <s:enumeration value="JAN13" />
+          <s:enumeration value="MSI_Mod10" />
+          <s:enumeration value="MSI_2Mod10" />
+          <s:enumeration value="MSI_Mod11" />
+          <s:enumeration value="MSI_Mod11_Mod10" />
+          <s:enumeration value="Modified_Plessey" />
+          <s:enumeration value="CODE11" />
+          <s:enumeration value="USD8" />
+          <s:enumeration value="UCC12" />
+          <s:enumeration value="UCC13" />
+          <s:enumeration value="LOGMARS" />
+          <s:enumeration value="CODE128" />
+          <s:enumeration value="CODE128A" />
+          <s:enumeration value="CODE128B" />
+          <s:enumeration value="CODE128C" />
+          <s:enumeration value="ITF14" />
+          <s:enumeration value="CODE93" />
+          <s:enumeration value="TELEPEN" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="GenerateBarcodeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GenerateBarcodeResult" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTemplateFromDocumentHandle">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="agent" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="docHandle" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTemplateFromDocumentHandleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTemplateFromDocumentHandleResult" type="tns:ProdoctivityTemplate" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SaveUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="agent" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="user" type="tns:ProdoctivityUser" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SaveUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SaveUserResult" type="tns:ProdoctivityUser" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="agent" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="userId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUserResult" type="tns:ProdoctivityUser" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPasswordPolicy">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="agent" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="PasswordPolicy">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="MinLength" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="MaxLength" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="AllowedCharSets" type="tns:ArrayOfPasswordPolicyCharSet" />
+          <s:element minOccurs="0" maxOccurs="1" name="InvalidCharsPattern" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="InvalidCharsMessageKey" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfPasswordPolicyCharSet">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="PasswordPolicyCharSet" nillable="true" type="tns:PasswordPolicyCharSet" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PasswordPolicyCharSet">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Value" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="MinLength" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsCompact" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsNegative" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="RegexPattern" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="InvalidMessageKey" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetPasswordPolicyResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPasswordPolicyResult" type="tns:PasswordPolicy" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChangePassword">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="token" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChangePasswordResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ChangePasswordResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPasswordPolicyNotAut">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetPasswordPolicyNotAutResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPasswordPolicyNotAutResult" type="tns:PasswordPolicy" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SaveRole">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="agent" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="role" type="tns:ProdoctivityRole" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SaveRoleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SaveRoleResult" type="tns:ProdoctivityRole" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRole">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="agent" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="roleId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRoleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetRoleResult" type="tns:ProdoctivityRole" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetClientOffices">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="agent" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ClientOffice">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfClientOffice">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ClientOffice" nillable="true" type="tns:ClientOffice" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetClientOfficesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetClientOfficesResult" type="tns:ArrayOfClientOffice" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUsers">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="agent" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUsersResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUsersResult" type="tns:ArrayOfProdoctivityUser" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRoles">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="agent" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRolesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetRolesResult" type="tns:ArrayOfProdoctivityRole" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDocumentTypeAccesses">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="agent" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDocumentTypeAccessesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDocumentTypeAccessesResult" type="tns:ArrayOfDocumentTypeAccess" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDocumentTypes">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="agent" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DocumentType">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="tns:DocumentTypeStatus" />
+          <s:element minOccurs="0" maxOccurs="1" name="BusinessLine" type="tns:ProdoctivityBusinessLine" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="DocumentTypeStatus">
+        <s:restriction base="s:string">
+          <s:enumeration value="Inactive" />
+          <s:enumeration value="Active" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ProdoctivityBusinessLine">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="WorkflowList" type="tns:ArrayOfWorkflowDefinition" />
+          <s:element minOccurs="1" maxOccurs="1" name="DefaultWorkflowConfigurationId" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="tns:BusinessLineStatus" />
+          <s:element minOccurs="0" maxOccurs="1" name="Comments" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="BusinessFunctionType" type="tns:BusinessFunctionTypes" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfWorkflowDefinition">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="WorkflowDefinition" nillable="true" type="tns:WorkflowDefinition" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="WorkflowDefinition">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="WorkflowType" type="tns:WorkflowTypes" />
+          <s:element minOccurs="0" maxOccurs="1" name="BusinessLineName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="BusinessLineId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Active" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="QueueList" type="tns:ArrayOfWorkflowProcessQueue" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="TemplatesCount" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="HasProcesses" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="WorkflowTypes">
+        <s:restriction base="s:string">
+          <s:enumeration value="TemplateCreation" />
+          <s:enumeration value="DocumentGeneration" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfWorkflowProcessQueue">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="WorkflowProcessQueue" nillable="true" type="tns:WorkflowProcessQueue" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="WorkflowProcessQueue">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="WorkflowDefinitionId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Order" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="EstimatedTimeHours" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="CalendarId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="QueueName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="QueueType" nillable="true" type="tns:WorkflowQueueTypes" />
+          <s:element minOccurs="1" maxOccurs="1" name="InRole" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="HasTasks" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Roles" type="tns:ArrayOfRole" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="WorkflowQueueTypes">
+        <s:restriction base="s:string">
+          <s:enumeration value="Creation" />
+          <s:enumeration value="QA" />
+          <s:enumeration value="Verification" />
+          <s:enumeration value="Publish" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfRole">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Role" nillable="true" type="tns:Role" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Role">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Active" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="HasActiveDirectoryIntegration" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="BusinessLineStatus">
+        <s:restriction base="s:string">
+          <s:enumeration value="Inactive" />
+          <s:enumeration value="Active" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfDocumentType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DocumentType" nillable="true" type="tns:DocumentType" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetDocumentTypesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDocumentTypesResult" type="tns:ArrayOfDocumentType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetServiceDescription">
+        <s:complexType />
+      </s:element>
+      <s:complexType name="ServiceDescription">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Url" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Version" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Active" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Dependencies" type="tns:ArrayOfServiceDescription" />
+          <s:element minOccurs="0" maxOccurs="1" name="Features" type="tns:ArrayOfServiceFeature" />
+          <s:element minOccurs="0" maxOccurs="1" name="Parameters" type="tns:ArrayOfServiceParameter" />
+          <s:element minOccurs="0" maxOccurs="1" name="Tests" type="tns:ArrayOfServiceTestResult" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfServiceDescription">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ServiceDescription" nillable="true" type="tns:ServiceDescription" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfServiceFeature">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ServiceFeature" nillable="true" type="tns:ServiceFeature" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ServiceFeature">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfServiceParameter">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ServiceParameter" nillable="true" type="tns:ServiceParameter" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ServiceParameter">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Value" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfServiceTestResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ServiceTestResult" nillable="true" type="tns:ServiceTestResult" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ServiceTestResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Result" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetServiceDescriptionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetServiceDescriptionResult" type="tns:ServiceDescription" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserContactInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="userId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ProdoctivityUserContactInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LastName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="WorkPhone" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="WorkPhoneExt" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MobilePhone" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LoginName" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetUserContactInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUserContactInfoResult" type="tns:ProdoctivityUserContactInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetUserProfileSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUserProfile" />
+  </wsdl:message>
+  <wsdl:message name="GetUserProfileSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUserProfileResponse" />
+  </wsdl:message>
+  <wsdl:message name="CompareDocumentsSoapIn">
+    <wsdl:part name="parameters" element="tns:CompareDocuments" />
+  </wsdl:message>
+  <wsdl:message name="CompareDocumentsSoapOut">
+    <wsdl:part name="parameters" element="tns:CompareDocumentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDocument" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDocumentResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentWithAccessesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDocumentWithAccesses" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentWithAccessesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDocumentWithAccessesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentToPDFSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDocumentToPDF" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentToPDFSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDocumentToPDFResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDocumentInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDocumentInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentLatestVersionSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDocumentLatestVersion" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentLatestVersionSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDocumentLatestVersionResponse" />
+  </wsdl:message>
+  <wsdl:message name="SaveDocumentWithKeywordsSoapIn">
+    <wsdl:part name="parameters" element="tns:SaveDocumentWithKeywords" />
+  </wsdl:message>
+  <wsdl:message name="SaveDocumentWithKeywordsSoapOut">
+    <wsdl:part name="parameters" element="tns:SaveDocumentWithKeywordsResponse" />
+  </wsdl:message>
+  <wsdl:message name="SaveDocumentPageSoapIn">
+    <wsdl:part name="parameters" element="tns:SaveDocumentPage" />
+  </wsdl:message>
+  <wsdl:message name="SaveDocumentPageSoapOut">
+    <wsdl:part name="parameters" element="tns:SaveDocumentPageResponse" />
+  </wsdl:message>
+  <wsdl:message name="SaveDocumentSoapIn">
+    <wsdl:part name="parameters" element="tns:SaveDocument" />
+  </wsdl:message>
+  <wsdl:message name="SaveDocumentSoapOut">
+    <wsdl:part name="parameters" element="tns:SaveDocumentResponse" />
+  </wsdl:message>
+  <wsdl:message name="UserCanAccessDocumentSoapIn">
+    <wsdl:part name="parameters" element="tns:UserCanAccessDocument" />
+  </wsdl:message>
+  <wsdl:message name="UserCanAccessDocumentSoapOut">
+    <wsdl:part name="parameters" element="tns:UserCanAccessDocumentResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentVersionHistorySoapIn">
+    <wsdl:part name="parameters" element="tns:GetDocumentVersionHistory" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentVersionHistorySoapOut">
+    <wsdl:part name="parameters" element="tns:GetDocumentVersionHistoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTemplateSampleContextXmlSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTemplateSampleContextXml" />
+  </wsdl:message>
+  <wsdl:message name="GetTemplateSampleContextXmlSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTemplateSampleContextXmlResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTemplateSampleContextXmlRandomValuesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTemplateSampleContextXmlRandomValues" />
+  </wsdl:message>
+  <wsdl:message name="GetTemplateSampleContextXmlRandomValuesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTemplateSampleContextXmlRandomValuesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTemplateContextDefinitionSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTemplateContextDefinition" />
+  </wsdl:message>
+  <wsdl:message name="GetTemplateContextDefinitionSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTemplateContextDefinitionResponse" />
+  </wsdl:message>
+  <wsdl:message name="AuthorizeChildSecurityTokenSoapIn">
+    <wsdl:part name="parameters" element="tns:AuthorizeChildSecurityToken" />
+  </wsdl:message>
+  <wsdl:message name="AuthorizeChildSecurityTokenSoapOut">
+    <wsdl:part name="parameters" element="tns:AuthorizeChildSecurityTokenResponse" />
+  </wsdl:message>
+  <wsdl:message name="ForkChildSecurityTokenSoapIn">
+    <wsdl:part name="parameters" element="tns:ForkChildSecurityToken" />
+  </wsdl:message>
+  <wsdl:message name="ForkChildSecurityTokenSoapOut">
+    <wsdl:part name="parameters" element="tns:ForkChildSecurityTokenResponse" />
+  </wsdl:message>
+  <wsdl:message name="IsActiveDirectoryLoginEnabledSoapIn">
+    <wsdl:part name="parameters" element="tns:IsActiveDirectoryLoginEnabled" />
+  </wsdl:message>
+  <wsdl:message name="IsActiveDirectoryLoginEnabledSoapOut">
+    <wsdl:part name="parameters" element="tns:IsActiveDirectoryLoginEnabledResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckUserIPSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckUserIP" />
+  </wsdl:message>
+  <wsdl:message name="CheckUserIPSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckUserIPResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUserActiveDirectorySoapIn">
+    <wsdl:part name="parameters" element="tns:GetUserActiveDirectory" />
+  </wsdl:message>
+  <wsdl:message name="GetUserActiveDirectorySoapOut">
+    <wsdl:part name="parameters" element="tns:GetUserActiveDirectoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="AuthenticateActiveDirectorySoapIn">
+    <wsdl:part name="parameters" element="tns:AuthenticateActiveDirectory" />
+  </wsdl:message>
+  <wsdl:message name="AuthenticateActiveDirectorySoapOut">
+    <wsdl:part name="parameters" element="tns:AuthenticateActiveDirectoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="RefreshActiveDirectoryTokenSoapIn">
+    <wsdl:part name="parameters" element="tns:RefreshActiveDirectoryToken" />
+  </wsdl:message>
+  <wsdl:message name="RefreshActiveDirectoryTokenSoapOut">
+    <wsdl:part name="parameters" element="tns:RefreshActiveDirectoryTokenResponse" />
+  </wsdl:message>
+  <wsdl:message name="SearchDocumentsSoapIn">
+    <wsdl:part name="parameters" element="tns:SearchDocuments" />
+  </wsdl:message>
+  <wsdl:message name="SearchDocumentsSoapOut">
+    <wsdl:part name="parameters" element="tns:SearchDocumentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="SaveMassiveGenerationConfigSoapIn">
+    <wsdl:part name="parameters" element="tns:SaveMassiveGenerationConfig" />
+  </wsdl:message>
+  <wsdl:message name="SaveMassiveGenerationConfigSoapOut">
+    <wsdl:part name="parameters" element="tns:SaveMassiveGenerationConfigResponse" />
+  </wsdl:message>
+  <wsdl:message name="SaveMassiveGenerationSoapIn">
+    <wsdl:part name="parameters" element="tns:SaveMassiveGeneration" />
+  </wsdl:message>
+  <wsdl:message name="SaveMassiveGenerationSoapOut">
+    <wsdl:part name="parameters" element="tns:SaveMassiveGenerationResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetMassiveGenerationSoapIn">
+    <wsdl:part name="parameters" element="tns:GetMassiveGeneration" />
+  </wsdl:message>
+  <wsdl:message name="GetMassiveGenerationSoapOut">
+    <wsdl:part name="parameters" element="tns:GetMassiveGenerationResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetMassiveGenerationListSoapIn">
+    <wsdl:part name="parameters" element="tns:GetMassiveGenerationList" />
+  </wsdl:message>
+  <wsdl:message name="GetMassiveGenerationListSoapOut">
+    <wsdl:part name="parameters" element="tns:GetMassiveGenerationListResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetMassiveGenerationConfigListSoapIn">
+    <wsdl:part name="parameters" element="tns:GetMassiveGenerationConfigList" />
+  </wsdl:message>
+  <wsdl:message name="GetMassiveGenerationConfigListSoapOut">
+    <wsdl:part name="parameters" element="tns:GetMassiveGenerationConfigListResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetMassiveGenerationConfigSoapIn">
+    <wsdl:part name="parameters" element="tns:GetMassiveGenerationConfig" />
+  </wsdl:message>
+  <wsdl:message name="GetMassiveGenerationConfigSoapOut">
+    <wsdl:part name="parameters" element="tns:GetMassiveGenerationConfigResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteMassiveGenerationConfigSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteMassiveGenerationConfig" />
+  </wsdl:message>
+  <wsdl:message name="DeleteMassiveGenerationConfigSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteMassiveGenerationConfigResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteCombinedGenerationConfigSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteCombinedGenerationConfig" />
+  </wsdl:message>
+  <wsdl:message name="DeleteCombinedGenerationConfigSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteCombinedGenerationConfigResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCombinedTemplateConfigListSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCombinedTemplateConfigList" />
+  </wsdl:message>
+  <wsdl:message name="GetCombinedTemplateConfigListSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCombinedTemplateConfigListResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCombinedTemplateConfigSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCombinedTemplateConfig" />
+  </wsdl:message>
+  <wsdl:message name="GetCombinedTemplateConfigSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCombinedTemplateConfigResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteMassiveGenerationSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteMassiveGeneration" />
+  </wsdl:message>
+  <wsdl:message name="DeleteMassiveGenerationSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteMassiveGenerationResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCatalogListSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCatalogList" />
+  </wsdl:message>
+  <wsdl:message name="GetCatalogListSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCatalogListResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCatalogSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCatalog" />
+  </wsdl:message>
+  <wsdl:message name="GetCatalogSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCatalogResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetKeywordListSoapIn">
+    <wsdl:part name="parameters" element="tns:GetKeywordList" />
+  </wsdl:message>
+  <wsdl:message name="GetKeywordListSoapOut">
+    <wsdl:part name="parameters" element="tns:GetKeywordListResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetKeywordSoapIn">
+    <wsdl:part name="parameters" element="tns:GetKeyword" />
+  </wsdl:message>
+  <wsdl:message name="GetKeywordSoapOut">
+    <wsdl:part name="parameters" element="tns:GetKeywordResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentHandleListFromGenerationTokenSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDocumentHandleListFromGenerationToken" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentHandleListFromGenerationTokenSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDocumentHandleListFromGenerationTokenResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetMassiveGenerationInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:GetMassiveGenerationInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetMassiveGenerationInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:GetMassiveGenerationInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="GenerateDocumentFromProdoctivityDocumentHandleListSoapIn">
+    <wsdl:part name="parameters" element="tns:GenerateDocumentFromProdoctivityDocumentHandleList" />
+  </wsdl:message>
+  <wsdl:message name="GenerateDocumentFromProdoctivityDocumentHandleListSoapOut">
+    <wsdl:part name="parameters" element="tns:GenerateDocumentFromProdoctivityDocumentHandleListResponse" />
+  </wsdl:message>
+  <wsdl:message name="GenerateDocumentFromProdoctivityDocumentHandleSoapIn">
+    <wsdl:part name="parameters" element="tns:GenerateDocumentFromProdoctivityDocumentHandle" />
+  </wsdl:message>
+  <wsdl:message name="GenerateDocumentFromProdoctivityDocumentHandleSoapOut">
+    <wsdl:part name="parameters" element="tns:GenerateDocumentFromProdoctivityDocumentHandleResponse" />
+  </wsdl:message>
+  <wsdl:message name="SaveTemplateSoapIn">
+    <wsdl:part name="parameters" element="tns:SaveTemplate" />
+  </wsdl:message>
+  <wsdl:message name="SaveTemplateSoapOut">
+    <wsdl:part name="parameters" element="tns:SaveTemplateResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentNotesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDocumentNotes" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentNotesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDocumentNotesResponse" />
+  </wsdl:message>
+  <wsdl:message name="SaveAlertSoapIn">
+    <wsdl:part name="parameters" element="tns:SaveAlert" />
+  </wsdl:message>
+  <wsdl:message name="SaveAlertSoapOut">
+    <wsdl:part name="parameters" element="tns:SaveAlertResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAlertSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAlert" />
+  </wsdl:message>
+  <wsdl:message name="GetAlertSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAlertResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAlertsForUserSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAlertsForUser" />
+  </wsdl:message>
+  <wsdl:message name="GetAlertsForUserSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAlertsForUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="GenerateBarcodeSoapIn">
+    <wsdl:part name="parameters" element="tns:GenerateBarcode" />
+  </wsdl:message>
+  <wsdl:message name="GenerateBarcodeSoapOut">
+    <wsdl:part name="parameters" element="tns:GenerateBarcodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTemplateFromDocumentHandleSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTemplateFromDocumentHandle" />
+  </wsdl:message>
+  <wsdl:message name="GetTemplateFromDocumentHandleSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTemplateFromDocumentHandleResponse" />
+  </wsdl:message>
+  <wsdl:message name="SaveUserSoapIn">
+    <wsdl:part name="parameters" element="tns:SaveUser" />
+  </wsdl:message>
+  <wsdl:message name="SaveUserSoapOut">
+    <wsdl:part name="parameters" element="tns:SaveUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUserSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUser" />
+  </wsdl:message>
+  <wsdl:message name="GetUserSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPasswordPolicySoapIn">
+    <wsdl:part name="parameters" element="tns:GetPasswordPolicy" />
+  </wsdl:message>
+  <wsdl:message name="GetPasswordPolicySoapOut">
+    <wsdl:part name="parameters" element="tns:GetPasswordPolicyResponse" />
+  </wsdl:message>
+  <wsdl:message name="ChangePasswordSoapIn">
+    <wsdl:part name="parameters" element="tns:ChangePassword" />
+  </wsdl:message>
+  <wsdl:message name="ChangePasswordSoapOut">
+    <wsdl:part name="parameters" element="tns:ChangePasswordResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPasswordPolicyNotAutSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPasswordPolicyNotAut" />
+  </wsdl:message>
+  <wsdl:message name="GetPasswordPolicyNotAutSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPasswordPolicyNotAutResponse" />
+  </wsdl:message>
+  <wsdl:message name="SaveRoleSoapIn">
+    <wsdl:part name="parameters" element="tns:SaveRole" />
+  </wsdl:message>
+  <wsdl:message name="SaveRoleSoapOut">
+    <wsdl:part name="parameters" element="tns:SaveRoleResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetRoleSoapIn">
+    <wsdl:part name="parameters" element="tns:GetRole" />
+  </wsdl:message>
+  <wsdl:message name="GetRoleSoapOut">
+    <wsdl:part name="parameters" element="tns:GetRoleResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetClientOfficesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetClientOffices" />
+  </wsdl:message>
+  <wsdl:message name="GetClientOfficesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetClientOfficesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUsersSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUsers" />
+  </wsdl:message>
+  <wsdl:message name="GetUsersSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUsersResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetRolesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetRoles" />
+  </wsdl:message>
+  <wsdl:message name="GetRolesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetRolesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentTypeAccessesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDocumentTypeAccesses" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentTypeAccessesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDocumentTypeAccessesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentTypesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDocumentTypes" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentTypesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDocumentTypesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetServiceDescriptionSoapIn">
+    <wsdl:part name="parameters" element="tns:GetServiceDescription" />
+  </wsdl:message>
+  <wsdl:message name="GetServiceDescriptionSoapOut">
+    <wsdl:part name="parameters" element="tns:GetServiceDescriptionResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUserContactInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUserContactInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetUserContactInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUserContactInfoResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ProdoctivityServiceSoap">
+    <wsdl:operation name="GetUserProfile">
+      <wsdl:input message="tns:GetUserProfileSoapIn" />
+      <wsdl:output message="tns:GetUserProfileSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CompareDocuments">
+      <wsdl:input message="tns:CompareDocumentsSoapIn" />
+      <wsdl:output message="tns:CompareDocumentsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDocument">
+      <wsdl:input message="tns:GetDocumentSoapIn" />
+      <wsdl:output message="tns:GetDocumentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentWithAccesses">
+      <wsdl:input message="tns:GetDocumentWithAccessesSoapIn" />
+      <wsdl:output message="tns:GetDocumentWithAccessesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentToPDF">
+      <wsdl:input message="tns:GetDocumentToPDFSoapIn" />
+      <wsdl:output message="tns:GetDocumentToPDFSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentInfo">
+      <wsdl:input message="tns:GetDocumentInfoSoapIn" />
+      <wsdl:output message="tns:GetDocumentInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentLatestVersion">
+      <wsdl:input message="tns:GetDocumentLatestVersionSoapIn" />
+      <wsdl:output message="tns:GetDocumentLatestVersionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveDocumentWithKeywords">
+      <wsdl:input message="tns:SaveDocumentWithKeywordsSoapIn" />
+      <wsdl:output message="tns:SaveDocumentWithKeywordsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveDocumentPage">
+      <wsdl:input message="tns:SaveDocumentPageSoapIn" />
+      <wsdl:output message="tns:SaveDocumentPageSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveDocument">
+      <wsdl:input message="tns:SaveDocumentSoapIn" />
+      <wsdl:output message="tns:SaveDocumentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UserCanAccessDocument">
+      <wsdl:input message="tns:UserCanAccessDocumentSoapIn" />
+      <wsdl:output message="tns:UserCanAccessDocumentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentVersionHistory">
+      <wsdl:input message="tns:GetDocumentVersionHistorySoapIn" />
+      <wsdl:output message="tns:GetDocumentVersionHistorySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTemplateSampleContextXml">
+      <wsdl:input message="tns:GetTemplateSampleContextXmlSoapIn" />
+      <wsdl:output message="tns:GetTemplateSampleContextXmlSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTemplateSampleContextXmlRandomValues">
+      <wsdl:input message="tns:GetTemplateSampleContextXmlRandomValuesSoapIn" />
+      <wsdl:output message="tns:GetTemplateSampleContextXmlRandomValuesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTemplateContextDefinition">
+      <wsdl:input message="tns:GetTemplateContextDefinitionSoapIn" />
+      <wsdl:output message="tns:GetTemplateContextDefinitionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AuthorizeChildSecurityToken">
+      <wsdl:input message="tns:AuthorizeChildSecurityTokenSoapIn" />
+      <wsdl:output message="tns:AuthorizeChildSecurityTokenSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ForkChildSecurityToken">
+      <wsdl:input message="tns:ForkChildSecurityTokenSoapIn" />
+      <wsdl:output message="tns:ForkChildSecurityTokenSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IsActiveDirectoryLoginEnabled">
+      <wsdl:input message="tns:IsActiveDirectoryLoginEnabledSoapIn" />
+      <wsdl:output message="tns:IsActiveDirectoryLoginEnabledSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckUserIP">
+      <wsdl:input message="tns:CheckUserIPSoapIn" />
+      <wsdl:output message="tns:CheckUserIPSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserActiveDirectory">
+      <wsdl:input message="tns:GetUserActiveDirectorySoapIn" />
+      <wsdl:output message="tns:GetUserActiveDirectorySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AuthenticateActiveDirectory">
+      <wsdl:input message="tns:AuthenticateActiveDirectorySoapIn" />
+      <wsdl:output message="tns:AuthenticateActiveDirectorySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RefreshActiveDirectoryToken">
+      <wsdl:input message="tns:RefreshActiveDirectoryTokenSoapIn" />
+      <wsdl:output message="tns:RefreshActiveDirectoryTokenSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SearchDocuments">
+      <wsdl:input message="tns:SearchDocumentsSoapIn" />
+      <wsdl:output message="tns:SearchDocumentsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveMassiveGenerationConfig">
+      <wsdl:input message="tns:SaveMassiveGenerationConfigSoapIn" />
+      <wsdl:output message="tns:SaveMassiveGenerationConfigSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveMassiveGeneration">
+      <wsdl:input message="tns:SaveMassiveGenerationSoapIn" />
+      <wsdl:output message="tns:SaveMassiveGenerationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMassiveGeneration">
+      <wsdl:input message="tns:GetMassiveGenerationSoapIn" />
+      <wsdl:output message="tns:GetMassiveGenerationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMassiveGenerationList">
+      <wsdl:input message="tns:GetMassiveGenerationListSoapIn" />
+      <wsdl:output message="tns:GetMassiveGenerationListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMassiveGenerationConfigList">
+      <wsdl:input message="tns:GetMassiveGenerationConfigListSoapIn" />
+      <wsdl:output message="tns:GetMassiveGenerationConfigListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMassiveGenerationConfig">
+      <wsdl:input message="tns:GetMassiveGenerationConfigSoapIn" />
+      <wsdl:output message="tns:GetMassiveGenerationConfigSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteMassiveGenerationConfig">
+      <wsdl:input message="tns:DeleteMassiveGenerationConfigSoapIn" />
+      <wsdl:output message="tns:DeleteMassiveGenerationConfigSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCombinedGenerationConfig">
+      <wsdl:input message="tns:DeleteCombinedGenerationConfigSoapIn" />
+      <wsdl:output message="tns:DeleteCombinedGenerationConfigSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCombinedTemplateConfigList">
+      <wsdl:input message="tns:GetCombinedTemplateConfigListSoapIn" />
+      <wsdl:output message="tns:GetCombinedTemplateConfigListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCombinedTemplateConfig">
+      <wsdl:input message="tns:GetCombinedTemplateConfigSoapIn" />
+      <wsdl:output message="tns:GetCombinedTemplateConfigSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteMassiveGeneration">
+      <wsdl:input message="tns:DeleteMassiveGenerationSoapIn" />
+      <wsdl:output message="tns:DeleteMassiveGenerationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCatalogList">
+      <wsdl:input message="tns:GetCatalogListSoapIn" />
+      <wsdl:output message="tns:GetCatalogListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCatalog">
+      <wsdl:input message="tns:GetCatalogSoapIn" />
+      <wsdl:output message="tns:GetCatalogSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetKeywordList">
+      <wsdl:input message="tns:GetKeywordListSoapIn" />
+      <wsdl:output message="tns:GetKeywordListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetKeyword">
+      <wsdl:input message="tns:GetKeywordSoapIn" />
+      <wsdl:output message="tns:GetKeywordSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentHandleListFromGenerationToken">
+      <wsdl:input message="tns:GetDocumentHandleListFromGenerationTokenSoapIn" />
+      <wsdl:output message="tns:GetDocumentHandleListFromGenerationTokenSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMassiveGenerationInfo">
+      <wsdl:input message="tns:GetMassiveGenerationInfoSoapIn" />
+      <wsdl:output message="tns:GetMassiveGenerationInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GenerateDocumentFromProdoctivityDocumentHandleList">
+      <wsdl:input message="tns:GenerateDocumentFromProdoctivityDocumentHandleListSoapIn" />
+      <wsdl:output message="tns:GenerateDocumentFromProdoctivityDocumentHandleListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GenerateDocumentFromProdoctivityDocumentHandle">
+      <wsdl:input message="tns:GenerateDocumentFromProdoctivityDocumentHandleSoapIn" />
+      <wsdl:output message="tns:GenerateDocumentFromProdoctivityDocumentHandleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveTemplate">
+      <wsdl:input message="tns:SaveTemplateSoapIn" />
+      <wsdl:output message="tns:SaveTemplateSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentNotes">
+      <wsdl:input message="tns:GetDocumentNotesSoapIn" />
+      <wsdl:output message="tns:GetDocumentNotesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveAlert">
+      <wsdl:input message="tns:SaveAlertSoapIn" />
+      <wsdl:output message="tns:SaveAlertSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAlert">
+      <wsdl:input message="tns:GetAlertSoapIn" />
+      <wsdl:output message="tns:GetAlertSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAlertsForUser">
+      <wsdl:input message="tns:GetAlertsForUserSoapIn" />
+      <wsdl:output message="tns:GetAlertsForUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GenerateBarcode">
+      <wsdl:input message="tns:GenerateBarcodeSoapIn" />
+      <wsdl:output message="tns:GenerateBarcodeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTemplateFromDocumentHandle">
+      <wsdl:input message="tns:GetTemplateFromDocumentHandleSoapIn" />
+      <wsdl:output message="tns:GetTemplateFromDocumentHandleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveUser">
+      <wsdl:input message="tns:SaveUserSoapIn" />
+      <wsdl:output message="tns:SaveUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUser">
+      <wsdl:input message="tns:GetUserSoapIn" />
+      <wsdl:output message="tns:GetUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPasswordPolicy">
+      <wsdl:input message="tns:GetPasswordPolicySoapIn" />
+      <wsdl:output message="tns:GetPasswordPolicySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangePassword">
+      <wsdl:input message="tns:ChangePasswordSoapIn" />
+      <wsdl:output message="tns:ChangePasswordSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPasswordPolicyNotAut">
+      <wsdl:input message="tns:GetPasswordPolicyNotAutSoapIn" />
+      <wsdl:output message="tns:GetPasswordPolicyNotAutSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveRole">
+      <wsdl:input message="tns:SaveRoleSoapIn" />
+      <wsdl:output message="tns:SaveRoleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRole">
+      <wsdl:input message="tns:GetRoleSoapIn" />
+      <wsdl:output message="tns:GetRoleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetClientOffices">
+      <wsdl:input message="tns:GetClientOfficesSoapIn" />
+      <wsdl:output message="tns:GetClientOfficesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUsers">
+      <wsdl:input message="tns:GetUsersSoapIn" />
+      <wsdl:output message="tns:GetUsersSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRoles">
+      <wsdl:input message="tns:GetRolesSoapIn" />
+      <wsdl:output message="tns:GetRolesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentTypeAccesses">
+      <wsdl:input message="tns:GetDocumentTypeAccessesSoapIn" />
+      <wsdl:output message="tns:GetDocumentTypeAccessesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentTypes">
+      <wsdl:input message="tns:GetDocumentTypesSoapIn" />
+      <wsdl:output message="tns:GetDocumentTypesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetServiceDescription">
+      <wsdl:input message="tns:GetServiceDescriptionSoapIn" />
+      <wsdl:output message="tns:GetServiceDescriptionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserContactInfo">
+      <wsdl:input message="tns:GetUserContactInfoSoapIn" />
+      <wsdl:output message="tns:GetUserContactInfoSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ProdoctivityServiceSoap" type="tns:ProdoctivityServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetUserProfile">
+      <soap:operation soapAction="http://tempuri.org/GetUserProfile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CompareDocuments">
+      <soap:operation soapAction="http://tempuri.org/CompareDocuments" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocument">
+      <soap:operation soapAction="http://tempuri.org/GetDocument" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentWithAccesses">
+      <soap:operation soapAction="http://tempuri.org/GetDocumentWithAccesses" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentToPDF">
+      <soap:operation soapAction="http://tempuri.org/GetDocumentToPDF" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentInfo">
+      <soap:operation soapAction="http://tempuri.org/GetDocumentInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentLatestVersion">
+      <soap:operation soapAction="http://tempuri.org/GetDocumentLatestVersion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveDocumentWithKeywords">
+      <soap:operation soapAction="http://tempuri.org/SaveDocumentWithKeywords" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveDocumentPage">
+      <soap:operation soapAction="http://tempuri.org/SaveDocumentPage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveDocument">
+      <soap:operation soapAction="http://tempuri.org/SaveDocument" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UserCanAccessDocument">
+      <soap:operation soapAction="http://tempuri.org/UserCanAccessDocument" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentVersionHistory">
+      <soap:operation soapAction="http://tempuri.org/GetDocumentVersionHistory" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTemplateSampleContextXml">
+      <soap:operation soapAction="http://tempuri.org/GetTemplateSampleContextXml" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTemplateSampleContextXmlRandomValues">
+      <soap:operation soapAction="http://tempuri.org/GetTemplateSampleContextXmlRandomValues" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTemplateContextDefinition">
+      <soap:operation soapAction="http://tempuri.org/GetTemplateContextDefinition" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AuthorizeChildSecurityToken">
+      <soap:operation soapAction="http://tempuri.org/AuthorizeChildSecurityToken" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ForkChildSecurityToken">
+      <soap:operation soapAction="http://tempuri.org/ForkChildSecurityToken" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsActiveDirectoryLoginEnabled">
+      <soap:operation soapAction="http://tempuri.org/IsActiveDirectoryLoginEnabled" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckUserIP">
+      <soap:operation soapAction="http://tempuri.org/CheckUserIP" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserActiveDirectory">
+      <soap:operation soapAction="http://tempuri.org/GetUserActiveDirectory" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AuthenticateActiveDirectory">
+      <soap:operation soapAction="http://tempuri.org/AuthenticateActiveDirectory" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RefreshActiveDirectoryToken">
+      <soap:operation soapAction="http://tempuri.org/RefreshActiveDirectoryToken" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchDocuments">
+      <soap:operation soapAction="http://tempuri.org/SearchDocuments" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveMassiveGenerationConfig">
+      <soap:operation soapAction="http://tempuri.org/SaveMassiveGenerationConfig" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveMassiveGeneration">
+      <soap:operation soapAction="http://tempuri.org/SaveMassiveGeneration" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMassiveGeneration">
+      <soap:operation soapAction="http://tempuri.org/GetMassiveGeneration" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMassiveGenerationList">
+      <soap:operation soapAction="http://tempuri.org/GetMassiveGenerationList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMassiveGenerationConfigList">
+      <soap:operation soapAction="http://tempuri.org/GetMassiveGenerationConfigList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMassiveGenerationConfig">
+      <soap:operation soapAction="http://tempuri.org/GetMassiveGenerationConfig" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteMassiveGenerationConfig">
+      <soap:operation soapAction="http://tempuri.org/DeleteMassiveGenerationConfig" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCombinedGenerationConfig">
+      <soap:operation soapAction="http://tempuri.org/DeleteCombinedGenerationConfig" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCombinedTemplateConfigList">
+      <soap:operation soapAction="http://tempuri.org/GetCombinedTemplateConfigList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCombinedTemplateConfig">
+      <soap:operation soapAction="http://tempuri.org/GetCombinedTemplateConfig" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteMassiveGeneration">
+      <soap:operation soapAction="http://tempuri.org/DeleteMassiveGeneration" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCatalogList">
+      <soap:operation soapAction="http://tempuri.org/GetCatalogList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCatalog">
+      <soap:operation soapAction="http://tempuri.org/GetCatalog" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetKeywordList">
+      <soap:operation soapAction="http://tempuri.org/GetKeywordList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetKeyword">
+      <soap:operation soapAction="http://tempuri.org/GetKeyword" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentHandleListFromGenerationToken">
+      <soap:operation soapAction="http://tempuri.org/GetDocumentHandleListFromGenerationToken" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMassiveGenerationInfo">
+      <soap:operation soapAction="http://tempuri.org/GetMassiveGenerationInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GenerateDocumentFromProdoctivityDocumentHandleList">
+      <soap:operation soapAction="http://tempuri.org/GenerateDocumentFromProdoctivityDocumentHandleList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GenerateDocumentFromProdoctivityDocumentHandle">
+      <soap:operation soapAction="http://tempuri.org/GenerateDocumentFromProdoctivityDocumentHandle" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveTemplate">
+      <soap:operation soapAction="http://tempuri.org/SaveTemplate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentNotes">
+      <soap:operation soapAction="http://tempuri.org/GetDocumentNotes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveAlert">
+      <soap:operation soapAction="http://tempuri.org/SaveAlert" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAlert">
+      <soap:operation soapAction="http://tempuri.org/GetAlert" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAlertsForUser">
+      <soap:operation soapAction="http://tempuri.org/GetAlertsForUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GenerateBarcode">
+      <soap:operation soapAction="http://tempuri.org/GenerateBarcode" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTemplateFromDocumentHandle">
+      <soap:operation soapAction="http://tempuri.org/GetTemplateFromDocumentHandle" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveUser">
+      <soap:operation soapAction="http://tempuri.org/SaveUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUser">
+      <soap:operation soapAction="http://tempuri.org/GetUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPasswordPolicy">
+      <soap:operation soapAction="http://tempuri.org/GetPasswordPolicy" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangePassword">
+      <soap:operation soapAction="http://tempuri.org/ChangePassword" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPasswordPolicyNotAut">
+      <soap:operation soapAction="http://tempuri.org/GetPasswordPolicyNotAut" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveRole">
+      <soap:operation soapAction="http://tempuri.org/SaveRole" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRole">
+      <soap:operation soapAction="http://tempuri.org/GetRole" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetClientOffices">
+      <soap:operation soapAction="http://tempuri.org/GetClientOffices" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUsers">
+      <soap:operation soapAction="http://tempuri.org/GetUsers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRoles">
+      <soap:operation soapAction="http://tempuri.org/GetRoles" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentTypeAccesses">
+      <soap:operation soapAction="http://tempuri.org/GetDocumentTypeAccesses" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentTypes">
+      <soap:operation soapAction="http://tempuri.org/GetDocumentTypes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetServiceDescription">
+      <soap:operation soapAction="http://tempuri.org/GetServiceDescription" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserContactInfo">
+      <soap:operation soapAction="http://tempuri.org/GetUserContactInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ProdoctivityServiceSoap12" type="tns:ProdoctivityServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetUserProfile">
+      <soap12:operation soapAction="http://tempuri.org/GetUserProfile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CompareDocuments">
+      <soap12:operation soapAction="http://tempuri.org/CompareDocuments" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocument">
+      <soap12:operation soapAction="http://tempuri.org/GetDocument" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentWithAccesses">
+      <soap12:operation soapAction="http://tempuri.org/GetDocumentWithAccesses" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentToPDF">
+      <soap12:operation soapAction="http://tempuri.org/GetDocumentToPDF" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentInfo">
+      <soap12:operation soapAction="http://tempuri.org/GetDocumentInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentLatestVersion">
+      <soap12:operation soapAction="http://tempuri.org/GetDocumentLatestVersion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveDocumentWithKeywords">
+      <soap12:operation soapAction="http://tempuri.org/SaveDocumentWithKeywords" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveDocumentPage">
+      <soap12:operation soapAction="http://tempuri.org/SaveDocumentPage" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveDocument">
+      <soap12:operation soapAction="http://tempuri.org/SaveDocument" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UserCanAccessDocument">
+      <soap12:operation soapAction="http://tempuri.org/UserCanAccessDocument" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentVersionHistory">
+      <soap12:operation soapAction="http://tempuri.org/GetDocumentVersionHistory" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTemplateSampleContextXml">
+      <soap12:operation soapAction="http://tempuri.org/GetTemplateSampleContextXml" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTemplateSampleContextXmlRandomValues">
+      <soap12:operation soapAction="http://tempuri.org/GetTemplateSampleContextXmlRandomValues" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTemplateContextDefinition">
+      <soap12:operation soapAction="http://tempuri.org/GetTemplateContextDefinition" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AuthorizeChildSecurityToken">
+      <soap12:operation soapAction="http://tempuri.org/AuthorizeChildSecurityToken" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ForkChildSecurityToken">
+      <soap12:operation soapAction="http://tempuri.org/ForkChildSecurityToken" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsActiveDirectoryLoginEnabled">
+      <soap12:operation soapAction="http://tempuri.org/IsActiveDirectoryLoginEnabled" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckUserIP">
+      <soap12:operation soapAction="http://tempuri.org/CheckUserIP" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserActiveDirectory">
+      <soap12:operation soapAction="http://tempuri.org/GetUserActiveDirectory" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AuthenticateActiveDirectory">
+      <soap12:operation soapAction="http://tempuri.org/AuthenticateActiveDirectory" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RefreshActiveDirectoryToken">
+      <soap12:operation soapAction="http://tempuri.org/RefreshActiveDirectoryToken" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchDocuments">
+      <soap12:operation soapAction="http://tempuri.org/SearchDocuments" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveMassiveGenerationConfig">
+      <soap12:operation soapAction="http://tempuri.org/SaveMassiveGenerationConfig" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveMassiveGeneration">
+      <soap12:operation soapAction="http://tempuri.org/SaveMassiveGeneration" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMassiveGeneration">
+      <soap12:operation soapAction="http://tempuri.org/GetMassiveGeneration" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMassiveGenerationList">
+      <soap12:operation soapAction="http://tempuri.org/GetMassiveGenerationList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMassiveGenerationConfigList">
+      <soap12:operation soapAction="http://tempuri.org/GetMassiveGenerationConfigList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMassiveGenerationConfig">
+      <soap12:operation soapAction="http://tempuri.org/GetMassiveGenerationConfig" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteMassiveGenerationConfig">
+      <soap12:operation soapAction="http://tempuri.org/DeleteMassiveGenerationConfig" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCombinedGenerationConfig">
+      <soap12:operation soapAction="http://tempuri.org/DeleteCombinedGenerationConfig" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCombinedTemplateConfigList">
+      <soap12:operation soapAction="http://tempuri.org/GetCombinedTemplateConfigList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCombinedTemplateConfig">
+      <soap12:operation soapAction="http://tempuri.org/GetCombinedTemplateConfig" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteMassiveGeneration">
+      <soap12:operation soapAction="http://tempuri.org/DeleteMassiveGeneration" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCatalogList">
+      <soap12:operation soapAction="http://tempuri.org/GetCatalogList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCatalog">
+      <soap12:operation soapAction="http://tempuri.org/GetCatalog" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetKeywordList">
+      <soap12:operation soapAction="http://tempuri.org/GetKeywordList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetKeyword">
+      <soap12:operation soapAction="http://tempuri.org/GetKeyword" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentHandleListFromGenerationToken">
+      <soap12:operation soapAction="http://tempuri.org/GetDocumentHandleListFromGenerationToken" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMassiveGenerationInfo">
+      <soap12:operation soapAction="http://tempuri.org/GetMassiveGenerationInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GenerateDocumentFromProdoctivityDocumentHandleList">
+      <soap12:operation soapAction="http://tempuri.org/GenerateDocumentFromProdoctivityDocumentHandleList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GenerateDocumentFromProdoctivityDocumentHandle">
+      <soap12:operation soapAction="http://tempuri.org/GenerateDocumentFromProdoctivityDocumentHandle" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveTemplate">
+      <soap12:operation soapAction="http://tempuri.org/SaveTemplate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentNotes">
+      <soap12:operation soapAction="http://tempuri.org/GetDocumentNotes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveAlert">
+      <soap12:operation soapAction="http://tempuri.org/SaveAlert" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAlert">
+      <soap12:operation soapAction="http://tempuri.org/GetAlert" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAlertsForUser">
+      <soap12:operation soapAction="http://tempuri.org/GetAlertsForUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GenerateBarcode">
+      <soap12:operation soapAction="http://tempuri.org/GenerateBarcode" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTemplateFromDocumentHandle">
+      <soap12:operation soapAction="http://tempuri.org/GetTemplateFromDocumentHandle" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveUser">
+      <soap12:operation soapAction="http://tempuri.org/SaveUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUser">
+      <soap12:operation soapAction="http://tempuri.org/GetUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPasswordPolicy">
+      <soap12:operation soapAction="http://tempuri.org/GetPasswordPolicy" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangePassword">
+      <soap12:operation soapAction="http://tempuri.org/ChangePassword" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPasswordPolicyNotAut">
+      <soap12:operation soapAction="http://tempuri.org/GetPasswordPolicyNotAut" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveRole">
+      <soap12:operation soapAction="http://tempuri.org/SaveRole" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRole">
+      <soap12:operation soapAction="http://tempuri.org/GetRole" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetClientOffices">
+      <soap12:operation soapAction="http://tempuri.org/GetClientOffices" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUsers">
+      <soap12:operation soapAction="http://tempuri.org/GetUsers" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRoles">
+      <soap12:operation soapAction="http://tempuri.org/GetRoles" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentTypeAccesses">
+      <soap12:operation soapAction="http://tempuri.org/GetDocumentTypeAccesses" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentTypes">
+      <soap12:operation soapAction="http://tempuri.org/GetDocumentTypes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetServiceDescription">
+      <soap12:operation soapAction="http://tempuri.org/GetServiceDescription" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserContactInfo">
+      <soap12:operation soapAction="http://tempuri.org/GetUserContactInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ProdoctivityService">
+    <wsdl:port name="ProdoctivityServiceSoap" binding="tns:ProdoctivityServiceSoap">
+      <soap:address location="http://zeus/CoordinatorFront/ProdoctivityService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ProdoctivityServiceSoap12" binding="tns:ProdoctivityServiceSoap12">
+      <soap12:address location="http://zeus/CoordinatorFront/ProdoctivityService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
